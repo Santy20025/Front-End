@@ -1,19 +1,19 @@
-const comentarios =[
+const Comentarios = [
     {
         id:1,
-        comentario:"Morbi vitae lacus sed odio.",
-        calificacion : 8
-        
+        comentario:"Lorem ipsum dolor sit amet.",
+        calificacion: 7
     },
     {
         id:2,
-        comentario:"Quisque commodo augue tortor, a.",
-        calificacion : 6
+        comentario:"Lorem ipsum dolor sit amet.",
+        calificacion: 8
+
     },
     {
         id:3,
         comentario:"Lorem ipsum dolor sit amet.",
-        calificacion : 4
+        calificacion: 10
     }
 ]
-export default comentarios
+export default Comentarios
