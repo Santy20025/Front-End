@@ -1,26 +1,22 @@
 import {React, useState} from 'react'
+import { BrowserRouter as Router, 
+                    Routes, 
+                    Route } from 'react-router-dom'
 import Header from './componentes/Header';
-import ComentarioItem from './componentes/ComentarioItem';
 import Comentarios from './data/Comentarios';
 import ComentarioLista from './componentes/ComentarioLista';
-import Card from './componentes/Card';
 import ComentarioStats from './componentes/ComentarioStats';
 import ComentarioForm from './componentes/ComentarioForm';
+import About from './pages/about';
+import AboutIconLink from './componentes/AboutIconLink';
+import HomeIconLink from './componentes/HomeIconLink';
+import { ComentariosProvider } from './contexto/ComentariosContexto';
 
 function App() {
 
     const [comments, 
             setComments] = useState(Comentarios);
 
-    const borrarItem=id=>{
-        if(window.confirm
-                ("Esta seguro de borrar el comentario?")){
-            //asignar nuevo estado a comments:
-            //Filter: para quitar los comentarios
-            //cuyo id concuerde con el parametro    
-            setComments(comments.filter((c)=> c.id !== id ) )   
-        }
-    }
 
     const titulo = "App de Comentarios";
     const Autor = "Santiago Borda"
@@ -35,21 +31,40 @@ function App() {
     }
     
   return (
-    <div className='container'>
+    <ComentariosProvider>
+    <Router>
+        <div className='container'>
 
-        <Header 
-            titulo={titulo} 
-            autor={Autor} 
-            centro={centro} 
-            ficha={ficha}/>
-        <ComentarioForm handleAdd={ addComentario } />
-        <ComentarioStats comentarios={comments}/>
-        <ComentarioLista 
-            comments={comments}
-            handleDelete={borrarItem} /> 
+            <Header 
+                titulo={titulo} 
+                autor={Autor} 
+                centro={centro} 
+                ficha={ficha}/>
+                <ComentarioStats />
+            <Routes>
+                <Route exact path='/' element={
+                    <>
+                    <ComentarioForm handleAdd={ addComentario } />
+                    <ComentarioLista /> 
+                    <AboutIconLink />
+                    </>
+                } >
+                </Route>
+                <Route  path='/about' element={
+                    
+                    <><About titulo={titulo}
+                          autor={Autor}
+                          ficha={ficha} />
+                          
+                          <HomeIconLink /></>
+
+                }></Route>
+
+            </Routes>
             
-    </div>
-
+        </div>
+    </Router>
+    </ComentariosProvider>
   )
 }
 
