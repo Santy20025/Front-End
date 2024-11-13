@@ -4,8 +4,8 @@ import ComentariosContexto from '../contexto/ComentariosContexto';
 const ComentarioStats = () => {
 
       const {comments} = useContext(ComentariosContexto)
-      // Calcular el número total de comentarios
-      const totalComentarios = comments.length;
+      const comentario = comments
+      const totalComentarios = comentario.length;
     
       // Calcular la calificación promedio
       const calificacionPromedio = totalComentarios > 0
@@ -16,7 +16,7 @@ const ComentarioStats = () => {
       return (
         <div className='feedback-stats'>
           <h4>Comentarios: {totalComentarios}</h4> 
-          <h4>Calificación Promedio: {calificacionPromedio.toFixed(1)}</h4>
+          <h4>Calificación Promedio: {calificacionPromedio}</h4>
         </div>
       );
     };
